@@ -4,6 +4,14 @@
 
 The IomtFhirClient Swift library simplifies sending IoMT (Internet of Medical Things) data to an [IoMT FHIR Connector for Azure](https://github.com/microsoft/iomt-fhir) endpoint for persistance in a FHIR® server.
 
+## Installation
+
+IomtFhirClient uses **Swift Package Manager** to manage dependencies. It is recommended that you use Xcode 11 or newer to add IomtFhirClient to your project.
+
+1. Using Xcode 11 go to File > Swift Packages > Add Package Dependency
+2. Paste the project URL: https://github.com/microsoft/iomt-fhir-client
+3. Click on next and select the project target
+
 ## Basic Usage
 
 ### Instantiate an IomtFhirClient
