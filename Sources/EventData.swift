@@ -3,13 +3,13 @@
 
 import Foundation
 
-public class EventData
+public class EventData : NSObject
 {
-    public var properties: [String : Any] = [:]
+    @objc public var properties: [String : Any] = [:]
     
-    public var data: Data
+    @objc public var data: Data
     
-    public init(data: Data)
+    @objc public init(data: Data)
     {
         self.data = data
     }

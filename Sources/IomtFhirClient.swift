@@ -3,7 +3,7 @@
 
 import Foundation
 
-public class IomtFhirClient
+public class IomtFhirClient : NSObject
 {
     public let eventHubName: String?
     
@@ -18,7 +18,6 @@ public class IomtFhirClient
     /// Creates a new instance of the IoMT FHIR Client using the specified connection string. You can populate the EntityPath property with the name of the Event Hub.
     ///
     /// - Parameter connectionString: The IoMT FHIR Client connection string (e.g. Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedAccessKeyName={policyname};SharedAccessKey={key};EntityPath={eventhubname}).
-    /// - Parameter transportType: The connection transport type (currently only HTTPS is supported).
     /// - Returns: A new instance of IomtFhirClient configured for the given connection and transort type.
     /** - Throws: Errors thrown by CreateFromConnectionString
      
@@ -27,7 +26,7 @@ public class IomtFhirClient
      'UnsupportedTransportType' The TransportType is not supported.
      
      */
-    public static func CreateFromConnectionString(connectionString: String) throws -> IomtFhirClient
+    @objc public static func CreateFromConnectionString(connectionString: String) throws -> IomtFhirClient
     {
         // Instantiate a new connection string builder.
         let connectionStringBuilder = try EventHubsConnectionStringBuilder(connectionString: connectionString);
@@ -56,17 +55,17 @@ public class IomtFhirClient
         }
     }
     
-    public func send(eventData: EventData, completion: @escaping (Bool, Error?) -> Void) throws
+    @objc public func send(eventData: EventData, completion: @escaping (Bool, Error?) -> Void) throws
     {
         try send(eventDatas: [eventData], partitionKey: nil, completion: completion)
     }
     
-    public func send(eventDatas: [EventData], completion: @escaping (Bool, Error?) -> Void) throws
+    @objc public func send(eventDatas: [EventData], completion: @escaping (Bool, Error?) -> Void) throws
     {
         try send(eventDatas: eventDatas, partitionKey: nil, completion: completion)
     }
     
-    public func send(eventDatas: [EventData], partitionKey: String?, completion: @escaping (Bool, Error?) -> Void) throws
+    @objc public func send(eventDatas: [EventData], partitionKey: String?, completion: @escaping (Bool, Error?) -> Void) throws
     {
         try sender.onSend(eventDatas: eventDatas, completion: completion)
     }
